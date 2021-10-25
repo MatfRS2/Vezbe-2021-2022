@@ -9,6 +9,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Basket.API", "Services\Bask
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{E89078FB-233B-4EBF-A6AE-B68647A4B200}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{6D301623-6179-453E-9B78-A59B0D3F9BD8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Basket", "Basket", "{361636BB-7F4D-481F-B5FA-8C4A31053898}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Catalog", "Catalog", "{B0145E8F-42E3-4FE0-B2FF-6171BB08C20B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Discount", "Discount", "{8678FE81-FD89-4938-9195-27DBDDE54E4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,6 +38,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C1E5FFBC-841E-48C0-A911-4B7FF9E872A5} = {B0145E8F-42E3-4FE0-B2FF-6171BB08C20B}
+		{670A55D1-5C94-46FA-8443-B3C0663AE3C1} = {361636BB-7F4D-481F-B5FA-8C4A31053898}
+		{361636BB-7F4D-481F-B5FA-8C4A31053898} = {6D301623-6179-453E-9B78-A59B0D3F9BD8}
+		{B0145E8F-42E3-4FE0-B2FF-6171BB08C20B} = {6D301623-6179-453E-9B78-A59B0D3F9BD8}
+		{8678FE81-FD89-4938-9195-27DBDDE54E4D} = {6D301623-6179-453E-9B78-A59B0D3F9BD8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4A989D1-ABE2-4C3C-BBDB-79B9ACD092C4}
