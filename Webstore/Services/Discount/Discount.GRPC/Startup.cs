@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Discount.Common.DTOs;
+using Discount.Common.Extensions;
+using Discount.GRPC.Protos;
+using Discount.GRPC.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,6 +21,12 @@ namespace Discount.GRPC
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddGrpc();
+            services.AddDiscountCommonServices();
+            services.AddAutoMapper(configuration =>
+            {
+                configuration.CreateMap<CouponDTO, GetDiscountResponse>().ReverseMap();
+                configuration.CreateMap<CouponDTO, GetRandomDiscountsResponse.Types.Coupon>().ReverseMap();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -31,7 +41,7 @@ namespace Discount.GRPC
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<CouponService>();
 
                 endpoints.MapGet("/", async context =>
                 {
