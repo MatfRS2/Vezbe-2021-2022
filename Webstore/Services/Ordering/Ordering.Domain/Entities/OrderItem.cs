@@ -1,4 +1,5 @@
 ﻿using Ordering.Domain.Common;
+using Ordering.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,7 +32,7 @@ namespace Ordering.Domain.Entities
             {
                 throw new OrderingDomainException("Invalid number of new units for order item");
             }
-            Units = units;
+            Units = newUnits;
         }
     }
 }
