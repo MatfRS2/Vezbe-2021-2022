@@ -1,5 +1,6 @@
 ﻿using FluentValidation;
 using MediatR;
+using Ordering.Application.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
