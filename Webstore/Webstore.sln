@@ -29,9 +29,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Domain", "Services
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Application", "Services\Ordering\Ordering.Application\Ordering.Application.csproj", "{E1A963B1-4F64-4BF9-9F7C-C9B38C2ABD21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.API", "Services\Ordering\Ordering.API\Ordering.API.csproj", "{31073399-F04A-4BDB-85AA-924E002E5C90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.API", "Services\Ordering\Ordering.API\Ordering.API.csproj", "{31073399-F04A-4BDB-85AA-924E002E5C90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ordering.Infrastructure", "Services\Ordering\Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{F1E6CF0C-C88C-4039-90B1-33E0DD616640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ordering.Infrastructure", "Services\Ordering\Ordering.Infrastructure\Ordering.Infrastructure.csproj", "{F1E6CF0C-C88C-4039-90B1-33E0DD616640}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{CDD1ACC0-84FE-46B6-AB7C-97BBB6A6091D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventBus.Messages", "Common\EventBus.Messages\EventBus.Messages.csproj", "{961ADD70-9F59-41F1-BEA0-66286AD170AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +83,10 @@ Global
 		{F1E6CF0C-C88C-4039-90B1-33E0DD616640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1E6CF0C-C88C-4039-90B1-33E0DD616640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1E6CF0C-C88C-4039-90B1-33E0DD616640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{961ADD70-9F59-41F1-BEA0-66286AD170AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{961ADD70-9F59-41F1-BEA0-66286AD170AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{961ADD70-9F59-41F1-BEA0-66286AD170AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{961ADD70-9F59-41F1-BEA0-66286AD170AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 		{E1A963B1-4F64-4BF9-9F7C-C9B38C2ABD21} = {0A66D696-1588-4701-B852-21240678C93B}
 		{31073399-F04A-4BDB-85AA-924E002E5C90} = {0A66D696-1588-4701-B852-21240678C93B}
 		{F1E6CF0C-C88C-4039-90B1-33E0DD616640} = {0A66D696-1588-4701-B852-21240678C93B}
+		{961ADD70-9F59-41F1-BEA0-66286AD170AA} = {CDD1ACC0-84FE-46B6-AB7C-97BBB6A6091D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A4A989D1-ABE2-4C3C-BBDB-79B9ACD092C4}
