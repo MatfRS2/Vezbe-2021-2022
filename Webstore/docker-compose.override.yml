@@ -38,8 +38,8 @@ services:
     volumes:
       - pgadmin_data:/root/.pgadmin
 
-  orderdb:
-    container_name: orderdb
+  mssql:
+    container_name: mssql
     environment:
       - SA_PASSWORD=MATF12345678rs2
       - ACCEPT_EULA=Y
@@ -47,7 +47,7 @@ services:
     ports:
       - "1433:1433"
     volumes:
-      - orderdb_data:/var/opt/mssql/data
+      - mssql_data:/var/opt/mssql/data
 
   rabbitmq:
     container_name: rabbitmq
@@ -104,10 +104,10 @@ services:
     container_name: ordering.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "ConnectionStrings:OrderingConnectionString=Server=orderdb;Database=OrderDb;User Id=sa;Password=MATF12345678rs2;"
+      - "ConnectionStrings:OrderingConnectionString=Server=mssql;Database=OrderDb;User Id=sa;Password=MATF12345678rs2;"
       - "EventBusSettings:HostAddress=amqp://guest:guest@rabbitmq:5672"
     depends_on:
-      - orderdb
+      - mssql
       - rabbitmq
     ports:
       - "8004:80"
