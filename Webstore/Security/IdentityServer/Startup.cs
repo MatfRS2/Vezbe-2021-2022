@@ -31,6 +31,8 @@ namespace IdentityServer
             services.ConfigurePersistence(Configuration);
             services.ConfigureIdentity();
 
+            services.ConfigureMiscellaneousServices();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
