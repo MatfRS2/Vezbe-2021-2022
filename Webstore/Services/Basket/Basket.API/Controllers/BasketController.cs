@@ -5,16 +5,19 @@ using Basket.API.Repositories;
 using EventBus.Messages.Events;
 using Grpc.Core;
 using MassTransit;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Basket.API.Controllers
 {
+    [Authorize(Roles = "Buyer")]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class BasketController : ControllerBase
@@ -38,6 +41,11 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> GetBasket(string username)
         {
+            if (User.FindFirst(ClaimTypes.Name).Value != username)
+            {
+                return Forbid();
+            }
+
             var basket = await _repository.GetBasket(username);
             return Ok(basket ?? new ShoppingCart(username));
         }
@@ -46,6 +54,11 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(ShoppingCart), StatusCodes.Status200OK)]
         public async Task<ActionResult<ShoppingCart>> UpdateBasket([FromBody] ShoppingCart basket)
         {
+            if (User.FindFirst(ClaimTypes.Name).Value != basket.Username)
+            {
+                return Forbid();
+            }
+
             foreach (var item in basket.Items)
             {
                 try
@@ -66,6 +79,11 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status200OK)]
         public async Task<IActionResult> DeleteBasket(string username)
         {
+            if (User.FindFirst(ClaimTypes.Name).Value != username)
+            {
+                return Forbid();
+            }
+
             await _repository.DeleteBasket(username);
             return Ok();
         }
@@ -76,6 +94,11 @@ namespace Basket.API.Controllers
         [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
         public async Task<IActionResult> Checkout([FromBody] BasketCheckout basketCheckout)
         {
+            if (User.FindFirst(ClaimTypes.Name).Value != basketCheckout.BuyerUsername)
+            {
+                return Forbid();
+            }
+
             // Get existing basket
             var basket = await _repository.GetBasket(basketCheckout.BuyerUsername);
             if (basket == null)

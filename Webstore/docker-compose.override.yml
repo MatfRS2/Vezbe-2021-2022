@@ -112,3 +112,13 @@ services:
     ports:
       - "8004:80"
 
+  identityserver:
+    container_name: identityserver
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "ConnectionStrings:IdentityConnectionString=Server=mssql;Database=IdentityDb;User Id=sa;Password=MATF12345678rs2;"
+    depends_on:
+      - mssql
+    ports:
+      - "4000:80"
+
