@@ -14,10 +14,10 @@ namespace IdentityServer.Controllers.Base
 {
     public class RegistrationControllerBase : ControllerBase
     {
-        private readonly ILogger<AuthenticationController> _logger;
-        private readonly IMapper _mapper;
-        private readonly UserManager<User> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        protected readonly ILogger<AuthenticationController> _logger;
+        protected readonly IMapper _mapper;
+        protected readonly UserManager<User> _userManager;
+        protected readonly RoleManager<IdentityRole> _roleManager;
 
         public RegistrationControllerBase(ILogger<AuthenticationController> logger, IMapper mapper, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
