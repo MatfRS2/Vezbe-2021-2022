@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "name": "Launch Angular in Chrome",
+      "request": "launch",
+      "type": "pwa-chrome",
+      "url": "http://localhost:4200",
+      "webRoot": "${workspaceFolder}/WebApps/WebstoreSPA"
+    },
+    {
       "name": "Launch Angular in Edge",
       "request": "launch",
       "type": "pwa-msedge",
