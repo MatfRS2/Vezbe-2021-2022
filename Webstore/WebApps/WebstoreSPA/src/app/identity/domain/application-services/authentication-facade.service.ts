@@ -8,6 +8,8 @@ import { AuthenticationService } from '../infrastructure/authentication.service'
 import { ILoginRequest } from '../models/login-request';
 import { ILoginResponse } from '../models/login-response';
 import { ILogoutRequest } from '../models/logout-request';
+import { IRefreshTokenRequest } from '../models/refresh-token-request';
+import { IRefreshTokenResponse } from '../models/refresh-token-response';
 import { IUserDetails } from '../models/user-details';
 import { UserFacadeService } from './user-facade.service';
 
@@ -67,6 +69,28 @@ export class AuthenticationFacadeService {
       catchError((err) => {
         console.error(err);
         return of(false);
+      })
+    );
+  }
+
+  public refreshToken(): Observable<string | null> {
+    return this.appStateService.getAppState().pipe(
+      take(1),
+      map((appState: IAppState) => {
+        const request: IRefreshTokenRequest = { userName: appState.username as string, refreshToken: appState.refreshToken as string };
+        return request;
+      }),
+      switchMap((request: IRefreshTokenRequest) => this.authenticationService.refreshToken(request)),
+      map((response: IRefreshTokenResponse) => {
+        this.appStateService.setAccessToken(response.accessToken);
+        this.appStateService.setRefreshToken(response.refreshToken);
+
+        return response.accessToken;
+      }),
+      catchError((err) => {
+        console.log(err);
+        this.appStateService.clearAppState();
+        return of(null);
       })
     );
   }
