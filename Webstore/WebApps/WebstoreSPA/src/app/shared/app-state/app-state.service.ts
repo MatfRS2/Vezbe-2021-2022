@@ -77,6 +77,12 @@ export class AppStateService {
     this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
   }
 
+  public clearAppState(): void {
+    this.localStorageService.clear(LocalStorageKeys.AppState);
+    this.appState = new AppState();
+    this.appStateSubject.next(this.appState);
+  }
+
   private restoreFromLocalStorage(): void {
     const appState: IAppState | null = this.localStorageService.get(LocalStorageKeys.AppState);
     if (appState !== null) {
