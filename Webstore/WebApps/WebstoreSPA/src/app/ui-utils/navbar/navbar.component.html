@@ -1,0 +1,31 @@
+<nav class="navbar navbar-light bg-light" *ngIf="appState$ | async as appState">
+  <div class="container-fluid">
+    <div class="d-flex">
+      <span class="navbar-brand mb-0 h1">{{ getNavbarTitle(appState) }}</span>
+
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]="['/catalog']">Products</a>
+        </li>
+        <li class="nav-item" *ngIf="canShowOrders(appState)">
+          <a class="nav-link" [routerLink]="['/orders']">My Orders</a>
+        </li>
+        <li class="nav-item" *ngIf="canShowAdminPanel(appState)">
+          <a class="nav-link" [routerLink]="['/admin']">Administrator Panel</a>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="nav">
+      <li class="nav-item" *ngIf="userLoggedOut(appState)">
+        <a class="nav-link" [routerLink]="['/identity']">Login/Register</a>
+      </li>
+      <li class="nav-item" *ngIf="userLoggedIn(appState)">
+        <a class="nav-link" [routerLink]="['/identity', 'profile']">User profile</a>
+      </li>
+      <li class="nav-item" *ngIf="userLoggedIn(appState)">
+        <a class="nav-link" [routerLink]="['/identity', 'logout']">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
