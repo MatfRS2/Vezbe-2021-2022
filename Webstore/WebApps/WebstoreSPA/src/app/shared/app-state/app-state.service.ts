@@ -6,7 +6,7 @@ import { AppState, IAppState } from './app-state';
 import { Role } from './role';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppStateService {
   private appState: IAppState = new AppState();
@@ -35,24 +35,67 @@ export class AppStateService {
     this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
   }
 
-  public setUsernameToken(username: string): void {
+  public setUsername(username: string): void {
     this.appState = this.appState.clone();
     this.appState.username = username;
     this.appStateSubject.next(this.appState);
     this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
   }
 
-  public setRolesToken(roles: Role | Role[]): void {
+  public setEmail(email: string): void {
+    this.appState = this.appState.clone();
+    this.appState.email = email;
+    this.appStateSubject.next(this.appState);
+    this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
+  }
+
+  public setRoles(roles: Role | Role[]): void {
     this.appState = this.appState.clone();
     this.appState.roles = roles;
     this.appStateSubject.next(this.appState);
     this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
   }
 
+  public setFirstName(firstName: string): void {
+    this.appState = this.appState.clone();
+    this.appState.firstName = firstName;
+    this.appStateSubject.next(this.appState);
+    this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
+  }
+
+  public setLastName(lastName: string): void {
+    this.appState = this.appState.clone();
+    this.appState.lastName = lastName;
+    this.appStateSubject.next(this.appState);
+    this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
+  }
+
+  public setUserId(userId: string): void {
+    this.appState = this.appState.clone();
+    this.appState.userId = userId;
+    this.appStateSubject.next(this.appState);
+    this.localStorageService.set(LocalStorageKeys.AppState, this.appState);
+  }
+
+  public clearAppState(): void {
+    this.localStorageService.clear(LocalStorageKeys.AppState);
+    this.appState = new AppState();
+    this.appStateSubject.next(this.appState);
+  }
+
   private restoreFromLocalStorage(): void {
     const appState: IAppState | null = this.localStorageService.get(LocalStorageKeys.AppState);
     if (appState !== null) {
-      this.appState = new AppState(appState.accessToken, appState.refreshToken, appState.username, appState.roles);
+      this.appState = new AppState(
+        appState.accessToken,
+        appState.refreshToken,
+        appState.username,
+        appState.email,
+        appState.roles,
+        appState.firstName,
+        appState.lastName,
+        appState.userId
+      );
       this.appStateSubject.next(this.appState);
     }
   }

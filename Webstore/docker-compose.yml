@@ -1,6 +1,9 @@
 version: '3.4'
 
 services:
+  portainer:
+    image: portainer/portainer-ce
+
   catalogdb:
     image: mongo
 
@@ -56,10 +59,8 @@ services:
       dockerfile: Security/IdentityServer/Dockerfile
 
 volumes:
+  portainer_data:
   mongo_data:
   postgres_data:
   pgadmin_data:
   mssql_data:
-
-
-
