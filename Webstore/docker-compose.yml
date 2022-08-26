@@ -1,6 +1,9 @@
 version: '3.4'
 
 services:
+  portainer:
+    image: portainer/portainer-ce
+
   catalogdb:
     image: mongo
 
@@ -12,6 +15,12 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2017-latest
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
 
   catalog.api:
     image: ${DOCKER_REGISTRY-}catalogapi
@@ -37,9 +46,21 @@ services:
       context: .
       dockerfile: Services/Discount/Discount.GRPC/Dockerfile
 
+  ordering.api:
+    image: ${DOCKER_REGISTRY-}orderingapi
+    build:
+      context: .
+      dockerfile: Services/Ordering/Ordering.API/Dockerfile
+
+  identityserver:
+    image: ${DOCKER_REGISTRY-}identityserver
+    build:
+      context: .
+      dockerfile: Security/IdentityServer/Dockerfile
+
 volumes:
+  portainer_data:
   mongo_data:
   postgres_data:
   pgadmin_data:
-
-
+  mssql_data:

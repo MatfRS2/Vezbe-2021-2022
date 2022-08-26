@@ -9,6 +9,6 @@ namespace Ordering.Application.Contracts.Persistence
 {
     public interface IOrderRepository : IAsyncRepository<Order>
     {
-        Task<IEnumerable<Order>> GetOrdersByUsername(string usename);
+        Task<IEnumerable<Order>> GetOrdersByUsername(string username);
     }
 }

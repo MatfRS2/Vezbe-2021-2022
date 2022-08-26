@@ -1,0 +1,19 @@
+<h1>Join our Webstore!</h1>
+
+<p>In order to buy or sell products, you need to have an account on Webstore.</p>
+
+<div class="row">
+    <div class="col-3">
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['login']">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['register']">Register</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>
